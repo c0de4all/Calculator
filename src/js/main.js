@@ -8,11 +8,12 @@ let btnStart = document.getElementById('start'),
     monthsavingsValue = document.getElementsByClassName('monthsavings-value')[0],
     yearsavingsValue = document.getElementsByClassName('yearsavings-value')[0],
 
-
+   
     inpExpenses = document.getElementsByClassName('expenses-item'),
-    btnExpenses = document.getElementsByTagName('button')[0],
-    btnOptExpenses= document.getElementsByTagName('button')[1],
-    btnRaschet = document.getElementsByTagName('button')[2],  
+    btnExpenses = document.getElementsByTagName('button')[1],
+    btnExpensesAdd=document.getElementsByTagName('button')[0],
+    btnOptExpenses= document.getElementsByTagName('button')[2],
+    btnRaschet = document.getElementsByTagName('button')[3],  
     inpOptExpen = document.querySelectorAll('.optionalexpenses-item'),
     inpChooseInc = document.querySelector('.choose-income'),
     inpChkSav = document.querySelector('#savings'),
@@ -23,6 +24,7 @@ let btnStart = document.getElementById('start'),
     inpDay = document.querySelector('.day-value');
 let money, data;
 btnExpenses.setAttribute("disabled", "disabled");
+btnExpensesAdd.setAttribute("disabled", "disabled");
 btnOptExpenses.setAttribute("disabled", "disabled");
 btnRaschet.setAttribute("disabled", "disabled");
 btnStart.addEventListener('click',function(){
@@ -40,6 +42,7 @@ btnStart.addEventListener('click',function(){
     btnExpenses.removeAttribute("disabled");
     btnOptExpenses.removeAttribute("disabled");
     btnRaschet.removeAttribute("disabled");
+    btnExpensesAdd.removeAttribute("disabled");
 
 });
 btnExpenses.addEventListener('click', function(){
@@ -60,6 +63,27 @@ btnExpenses.addEventListener('click', function(){
     }
     expensesValue.textContent = sum;
     appData.budget = appData.budget - sum;
+
+});
+btnExpensesAdd.addEventListener('click',function(){
+    let parent = document.getElementsByClassName('data')[0];
+    let num = inpExpenses.length +1;
+    let naim = document.createElement('input');
+    let cena = document.createElement('input');
+    let pos = parent.children.length;
+    naim.className = 'expenses-item';
+    naim.type = 'text';
+    naim.id ='expenses_'+ num;
+    naim.placeholder = 'Наименование';
+    parent.insertBefore(naim,parent.children[num]);
+    num++;
+    cena.className = 'expenses-item';
+    cena.type = 'text';
+    cena.id ='expenses_'+ (num);
+    cena.placeholder = 'Цена';
+    parent.insertBefore(cena,parent.children[num]);
+    
+    
 
 });
 btnOptExpenses.addEventListener('click',function(){
